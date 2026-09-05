@@ -109,3 +109,13 @@ CreateThread(function()
         end
     end
 end)
+
+RegisterCommand('togglesync', function()
+    disable = not disable
+    if disable then
+        QBCore.Functions.Notify('Server weather & time sync disabled. You can now use vMenu Weather & Time options!', 'primary')
+    else
+        QBCore.Functions.Notify('Server weather & time sync enabled.', 'primary')
+        TriggerServerEvent('qb-weathersync:server:RequestStateSync')
+    end
+end, false)
