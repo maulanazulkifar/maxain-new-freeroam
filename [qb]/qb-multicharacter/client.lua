@@ -43,7 +43,10 @@ local function initializePedModel(model, data)
         PlaceObjectOnGroundProperly(charPed)
         SetBlockingOfNonTemporaryEvents(charPed, true)
         if data then
-            TriggerEvent('qb-clothing:client:loadPlayerClothing', data, charPed)
+            local skinData = type(data) == "string" and json.decode(data) or data
+            if skinData then
+                exports['illenium-appearance']:setPedAppearance(charPed, skinData)
+            end
         end
     end)
 end
