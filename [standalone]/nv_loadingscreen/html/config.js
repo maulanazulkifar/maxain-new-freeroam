@@ -101,14 +101,14 @@ const videoBlur = 0;
 var videoOpacity = 0.3;
 
 // Example link: https://www.youtube.com/watch?v=abcdefgh
-const youtubeVideo = "https://www.youtube.com/watch?v=OM5q820kHJA";
-const showYoutubeVideo = true;
+const youtubeVideo = "https://www.youtube.com/watch?v=8NS-4m3wicw";
+const showYoutubeVideo = false;
 
 // Local Video
 const enableLocalVideo = false;
 
 // Local audio
-const localAudio = true;
+const localAudio = false;
 
 // HELP //
 

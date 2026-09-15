@@ -1,5 +1,5 @@
 Config = {
-    MenuLanguage = 'en', -- Change the language of the menu here
+    MenuLanguage = 'id', -- Change the language of the menu here
 
     EnableCancelKeybind = true,
     CancelEmoteKey = 'X',
