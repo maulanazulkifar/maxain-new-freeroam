@@ -599,12 +599,14 @@ local function addEmoteMenu(menu)
     -- Put all the emotes with EmoteType.EMOTES (and ANIMAL_EMOTES if enabled) within the emotes category
     local emotesList = {}
     for emoteName, data in pairs(EmoteData) do
-        local isRegularEmote = data.emoteType == EmoteType.EMOTES
-        local isAnimalEmote = Config.AnimalEmotesEnabled and data.emoteType == EmoteType.ANIMAL_EMOTES
-        if isRegularEmote or isAnimalEmote then
-            -- Check model compatibility
-            if not CachedPlayerModel or IsModelCompatible(CachedPlayerModel, emoteName) then
-                emotesList[#emotesList + 1] = emoteName
+        if not data.isCustom then
+            local isRegularEmote = data.emoteType == EmoteType.EMOTES
+            local isAnimalEmote = Config.AnimalEmotesEnabled and data.emoteType == EmoteType.ANIMAL_EMOTES
+            if isRegularEmote or isAnimalEmote then
+                -- Check model compatibility
+                if not CachedPlayerModel or IsModelCompatible(CachedPlayerModel, emoteName) then
+                    emotesList[#emotesList + 1] = emoteName
+                end
             end
         end
     end
@@ -1279,6 +1281,9 @@ end
 
 CreateThread(function()
     LoadAddonEmotes()
+    if CustomEmoteNames and next(CustomEmoteNames) then
+        Config.CustomCategories["Custom Emotes"] = CustomEmoteNames
+    end
     convertRP()
 
     -- Request permissions from server before creating menu

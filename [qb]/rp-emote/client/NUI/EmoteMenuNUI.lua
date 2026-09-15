@@ -293,7 +293,7 @@ end)
 
 function ToggleNUIMenu() 
     if not IsNuiFocused() then
-        SetNuiFocus(true, false)
+        SetNuiFocus(true, true)
         SetNuiFocusKeepInput(true)
         TriggerEvent("rpemotes:internal:handleNUIOpened")
     else
@@ -304,34 +304,20 @@ end
 AddEventHandler("rpemotes:internal:handleNUIOpened", function()
     local _showEmoji = ShouldShowEmojiMenu()
     SendNUIMessage({type = "OPEN_MENU", value = true, shouldShowEmojiMenu = _showEmoji})
-    SendNUIMessage({type = "TOGGLE_CURSOR_INPUT", value = false})
+    SendNUIMessage({type = "TOGGLE_CURSOR_INPUT", value = true})
 
-    local scaleform_instructions = SetupButtons(keyListKeyboard)
+    local scaleform_instructions = SetupButtons(keyListMouse)
 
     while IsNuiFocused() do
         DrawScaleformMovieFullscreen(scaleform_instructions, 255, 255, 255, 255)
         DisableControlAction(0,37,true)
         DisableControlAction(0,200,true)
-        if IsControlJustPressed(0,19) then
-            SetNuiFocus(true, true)
-            SendNUIMessage({type = "TOGGLE_CURSOR_INPUT", value = true})
-            SetScaleformMovieAsNoLongerNeeded(scaleform_instructions)
-            scaleform_instructions = SetupButtons(keyListMouse)
-        end
-        if IsControlPressed(0,19) then
-            DisableControlAction(0,1,true)
-            DisableControlAction(0,2,true)
-            DisableControlAction(0,14,true)
-            DisableControlAction(0,15,true)
-            DisableControlAction(0,24,true)
-            DisableControlAction(0,25,true)
-        end
-        if IsControlJustReleased(0,19) then
-            SetNuiFocus(true, false)
-            SendNUIMessage({type = "TOGGLE_CURSOR_INPUT", value = false})
-            SetScaleformMovieAsNoLongerNeeded(scaleform_instructions)
-            scaleform_instructions = SetupButtons(keyListKeyboard)
-        end
+        DisableControlAction(0,1,true)
+        DisableControlAction(0,2,true)
+        DisableControlAction(0,14,true)
+        DisableControlAction(0,15,true)
+        DisableControlAction(0,24,true)
+        DisableControlAction(0,25,true)
         Wait(1)
     end
     CreatePreviewPed("", "")

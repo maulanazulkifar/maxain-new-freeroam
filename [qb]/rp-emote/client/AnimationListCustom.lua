@@ -22,12 +22,20 @@ CustomDP.PropEmotes = {}
 --| I don't think you should change the code below unless you know what you are doing |--
 -----------------------------------------------------------------------------------------
 
+---@type table<string, table<string, any>>
+CustomEmoteNames = {}
+
 function LoadAddonEmotes()
     assert(CustomDP ~= nil, 'Addon emotes can only be loaded once')
     for arrayName, array in pairs(CustomDP) do
         if RP[arrayName] then
             for emoteName, emoteData in pairs(array) do
+                emoteData.isCustom = true
                 RP[arrayName][emoteName] = emoteData
+                if not CustomEmoteNames[arrayName] then
+                    CustomEmoteNames[arrayName] = {}
+                end
+                table.insert(CustomEmoteNames[arrayName], emoteName)
             end
         end
     end
