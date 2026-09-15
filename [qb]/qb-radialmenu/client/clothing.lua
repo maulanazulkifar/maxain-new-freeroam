@@ -704,7 +704,6 @@ local Extras = {
 			Extra = {
 				{ Drawable = 8,  Id = 15, Tex = 0, Name = 'Extra Undershirt' },
 				{ Drawable = 3,  Id = 15, Tex = 0, Name = 'Extra Gloves' },
-				{ Drawable = 10, Id = 0,  Tex = 0, Name = 'Extra Decals' },
 			}
 		},
 		Emote = { Dict = 'clothingtie', Anim = 'try_tie_negative_a', Move = 51, Dur = 1200 }
@@ -716,6 +715,11 @@ local Extras = {
 	},
 	['Bagoff'] = {
 		Drawable = 5,
+		Table = { Standalone = true, male = 0, female = 0 },
+		Emote = { Dict = 'clothingtie', Anim = 'try_tie_negative_a', Move = 51, Dur = 1200 }
+	},
+	['Decals'] = {
+		Drawable = 10,
 		Table = { Standalone = true, male = 0, female = 0 },
 		Emote = { Dict = 'clothingtie', Anim = 'try_tie_negative_a', Move = 51, Dur = 1200 }
 	},
@@ -814,7 +818,7 @@ function ToggleClothing(whic, extra)
 	end
 	Wait(50)
 
-	if which == 'Shirt' or which == 'Pants' or which == 'Bagoff' then
+	if which == 'Shirt' or which == 'Pants' or which == 'Bagoff' or which == 'Decals' then
 		extra = true
 	end
 	if Cooldown then return end

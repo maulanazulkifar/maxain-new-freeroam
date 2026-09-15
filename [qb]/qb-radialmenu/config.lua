@@ -855,6 +855,14 @@ Config.ExtraCommands = {
         OffsetX = 0.04,
         OffsetY = 0.0
     },
+    ['decals'] = {
+        Func = function() ToggleClothing('Decals', true) end,
+        Sprite = 'shirt',
+        Desc = 'Take your decals off/on',
+        Name = 'decals',
+        OffsetX = 0.04,
+        OffsetY = 0.0
+    },
     ['reset'] = {
         Func = function()
             if not ResetClothing(true) then
